@@ -7,7 +7,6 @@ namespace Lesson_21_Collection.Utils
     public class Section
     {
         public string Name { get; set; }
-
-        public decimal Cost { get; set; }
+        public int Price { get; set; }
     }
 }

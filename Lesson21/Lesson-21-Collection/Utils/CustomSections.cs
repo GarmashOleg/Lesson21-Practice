@@ -8,29 +8,27 @@ namespace Lesson_21_Collection.Utils
 {
     public class CustomSections : Collection<Section>
     {
-        public Section this[string name] => this.Items.First(s => string.Equals(s.Name, name));
+        public Section this[string name] => this.Items.First(s => s.Name.Equals(name));
 
-        public IEnumerable<string> AllSection => this.Items.Select(s => s.Name);
+        public IEnumerable<string> AllSectionsByName => this.Items.Select(s => s.Name);
 
         protected override void InsertItem(int index, Section item)
         {
-
-            if (item.Cost > 0)
+            if (item.Price > 0)
             {
                 base.InsertItem(index, item);
             }
             else
             {
-                Console.WriteLine($"Specified cost isn't valid: {item.Cost}");
+                Console.WriteLine($"Price isn't valid: {item.Price}");
             }
-
         }
 
         public void ForEach(Action<string> action)
         {
-            foreach(var item in Items)
+            foreach (var item in Items)
             {
-                action($"Section name {item.Name} and cost {item.Cost}");
+                action($"Selection name {item.Name}, price {item.Price}");
             }
         }
     }

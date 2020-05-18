@@ -1,56 +1,65 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Lesson_21_Collection.Utils
 {
-    public class CustomCollectionFromZero<T> : ICollection<T>
-        where T : Section
+    public class CustomCollectionFromZero<T> : ICollection<T> where T : Section
     {
         protected IList<T> Items;
+
         public CustomCollectionFromZero()
         {
             Items = new List<T>();
         }
 
-        public int Count => Items.Count;
-
-        public bool IsReadOnly => throw new NotImplementedException();
 
         public void Add(T item)
         {
-            if (!string.IsNullOrEmpty(item.Name)) ;
+            if (!string.IsNullOrEmpty(item.Name))
+            {
+                Items.Add(item);
+            }
         }
 
-        public void Clear()
-        {
-            Items.Clear();
-        }
+        public int Count => Items.Count;
+        public bool IsReadOnly { get; }
 
-        public bool Contains(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Remove(T item)
-        {
-            throw new NotImplementedException();
+            return new SectionEnumerator<T>(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
+        }
+
+
+        public void Clear()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Contains(T item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Remove(T item)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        public T this[int counter]
+        {
+            get => Items[counter];
         }
     }
 }

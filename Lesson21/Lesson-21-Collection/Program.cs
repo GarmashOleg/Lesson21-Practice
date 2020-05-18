@@ -5,23 +5,29 @@ namespace Lesson_21_Collection
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var sections = new CustomSections();
+            var testSections = new CustomSections();
 
-            sections.Add(new Section() { Cost = 10, Name = "Volleyball" });
-            sections.Add(new Section() { Cost = -10, Name = "Football" });
-            sections.Add(new Section() { Cost = 100, Name = "Ragby" });
+            testSections.Add(new Section { Price = 100, Name = "Volleyball" });
+            testSections.Add(new Section { Price = -100, Name = "Football" });
+            testSections.Add(new Section { Price = 10, Name = "Ragby" });
 
-            Console.WriteLine(sections["Ragby"]);
+            testSections.ForEach(Console.WriteLine);
 
-            sections.ForEach(Console.WriteLine);
-            //sections.ForEach(WriteToFile);
-        }
+            Console.WriteLine("========================");
 
-        static void WriteToFile(string data)
-        {
-            System.IO.StreamWriter file = new System.IO.StreamWriter("D:\\Test.txt");
+            var sections = new CustomCollectionFromZero<Section>();
+
+            sections.Add(new Section { Price = 100, Name = "Volleyball" });
+            sections.Add(new Section { Price = -100, Name = "Football" });
+            sections.Add(new Section { Price = 10, Name = "Ragby" });
+
+            foreach (var item in sections)
+            {
+                Console.WriteLine($"Name = {item.Name}, price = {item.Price}");
+            }
+
         }
     }
 }
